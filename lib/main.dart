@@ -205,7 +205,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 50,
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
                 child: const Text(
                   'MODE MANUELLE',
                   style: TextStyle(color: Colors.white),
@@ -218,7 +220,12 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 IconButton(
                     onPressed: () {}, icon: Icon(Icons.notification_important)),
-                IconButton(onPressed: () {}, icon: Icon(Icons.settings))
+                IconButton(onPressed: () {
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                  );
+                }, icon: Icon(Icons.settings))
               ],
             )
           ],
@@ -375,8 +382,11 @@ class _AutomaticPageState extends State<AutomaticPage> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Theme(
-      data: ThemeData.dark(),
+      data: ThemeData(
+        primarySwatch: Colors.blueGrey,
+      ),
       child:Scaffold(
+      backgroundColor: Color.fromARGB(255, 54, 54, 54),
       appBar: AppBar(
         leading: Icon(Icons.home),
         title: Row(
@@ -401,7 +411,9 @@ class _AutomaticPageState extends State<AutomaticPage> {
               width: 50,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: const Text(
                 'MODE MANUELLE',
                 style: TextStyle(color: Colors.white),
@@ -636,6 +648,7 @@ Container(
                         ),
                         SizedBox(height: 8.0),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [Container(
   width: 20.0,
   height: 20.0),
@@ -645,12 +658,12 @@ Container(
   
   
 ),
-Container( width: 70.0,
-  height: 10.0),
 
 Container(
+  margin:EdgeInsets.only(left:20),
   child:Align(
   alignment: Alignment.center,
+  
   child: Text(
     '00:00:00',
     style: TextStyle(
@@ -755,6 +768,87 @@ Container(
   }
 }
 
+class SettingsPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          leading: Icon(Icons.home),
+          title: Row(
+            children: [
+              Text('ROBOT ASSEMBLEUR'),
+              SizedBox(
+                width: 400,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AutomaticPage()),
+                  );
+                },
+                child: Text(
+                  'MODE AUTOMATIQUE',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(
+                width: 50,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'MODE MANUELLE',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            Row(
+              children: [
+                IconButton(
+                    onPressed: () {}, icon: Icon(Icons.notification_important)),
+                IconButton(onPressed: () {
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                  );
+                }, icon: Icon(Icons.settings))
+              ],
+            )
+          ],
+          centerTitle: true,
+        ),
+      body: Center(
+        child: GridView.count(
+  crossAxisCount: 2, 
+  // number of columns
+  children: [
+    Container(
+      color: Colors.red,
+      child: Center(child: Text('Cell 1')),
+    ),
+    Container(
+      color: Colors.blue,
+      child: Center(child: Text('Cell 2')),
+    ),
+    Container(
+      color: Colors.green,
+      child: Center(child: Text('Cell 3')),
+    ),
+    Container(
+      color: Colors.yellow,
+      child: Center(child: Text('Cell 4')),
+    ),
+  ],
+)
+      ),
+    );
+  }
+}
 
 Widget onoff(text, setState, _controller, size) {
   return Container(
