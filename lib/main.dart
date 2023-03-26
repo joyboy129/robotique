@@ -5,6 +5,8 @@ import 'package:syncfusion_flutter_charts/charts.dart' as charts;
 import 'dart:io';
 import 'dart:convert';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
+
 
 
 void main() {
@@ -822,30 +824,63 @@ class SettingsPage extends StatelessWidget {
           ],
           centerTitle: true,
         ),
-      body: Center(
-        child: GridView.count(
-  crossAxisCount: 2, 
-  // number of columns
-  children: [
-    Container(
-      color: Colors.red,
-      child: Center(child: Text('Cell 1')),
+      body: Column(
+    children: [
+      Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Color.fromARGB(255, 37, 37, 37),
+                child: Center(
+                child: Image.asset('asset/image.png'),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: Colors.blue,
+                child: Center(
+                  child: FAProgressBar(
+          direction: Axis.vertical,
+          verticalDirection: VerticalDirection.up,
+      currentValue: 80,
+      displayText: '%',
     ),
-    Container(
-      color: Colors.blue,
-      child: Center(child: Text('Cell 2')),
-    ),
-    Container(
-      color: Colors.green,
-      child: Center(child: Text('Cell 3')),
-    ),
-    Container(
-      color: Colors.yellow,
-      child: Center(child: Text('Cell 4')),
-    ),
-  ],
-)
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+      Expanded(
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.yellow,
+                child: Center(
+                  child: Text('Cell 3'),
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: Colors.purple,
+                child: Center(
+                  child: Text('Cell 4'),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    ],
+  ),
     );
   }
 }
