@@ -622,7 +622,8 @@ Container(
                       ),
                     ),
                   ),
-                ),Expanded(
+                ),
+                Expanded(
                   child: Container(
                     margin: EdgeInsets.only(top: 80.0, bottom: 90.0, left:30.0,right:30.0),
                     
@@ -830,7 +831,7 @@ class SettingsPage extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 color: Color.fromARGB(255, 37, 37, 37),
                 child: Center(
@@ -839,19 +840,61 @@ class SettingsPage extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 2,
-              child: Container(
-                color: Colors.blue,
-                child: Center(
-                  child: FAProgressBar(
-          direction: Axis.vertical,
-          verticalDirection: VerticalDirection.up,
-      currentValue: 80,
-      displayText: '%',
+              flex:5,
+                 child:Container(
+      color: Colors.grey[900], // dark background color
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Text(
+            'Etat de Stock', // top text
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(
+            color: Colors.white, // white divider
+            height: 40.0,
+          ),
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+                Expanded(
+                  child: StockCell(),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     ),
                 ),
-              ),
-            ),
+           
           ],
         ),
       ),
@@ -859,7 +902,7 @@ class SettingsPage extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 1,
+              flex: 2,
               child: Container(
                 color: Colors.yellow,
                 child: Center(
@@ -1165,6 +1208,82 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
       ],
     ),
   );
+}
+class StockCell extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.0),
+        color: Colors.grey[800], // cell background color
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          
+          ElevatedButton(
+  onPressed: () {
+    // Do something when the button is pressed
+  },
+  child: Text(
+            'Reset', // button above
+            style: TextStyle(
+              color: Colors.blue,
+              fontSize: 16.0,
+            ),
+          ),
+),
+          SizedBox(height: 16.0),
+          Container(
+            width: 20.0,
+            height: 80.0,
+            child: VerticalBar(percentage: 0.5, color: Colors.red),
+          ),
+          SizedBox(height: 16.0),
+          Text(
+            'Text Below', // text below
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+class VerticalBarPainter extends CustomPainter {
+  final double percentage;
+  final Color color;
+
+  VerticalBarPainter({required this.percentage, required this.color});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final barHeight = size.height * percentage;
+    final paint = Paint()..color = color;
+    canvas.drawRect(Rect.fromLTWH(0, size.height - barHeight, size.width, barHeight), paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+class VerticalBar extends StatelessWidget {
+  final double percentage;
+  final Color color;
+
+  VerticalBar({required this.percentage, required this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      painter: VerticalBarPainter(percentage: percentage, color: color),
+      size: Size.infinite,
+    );
+  }
 }
 
 Widget start(
