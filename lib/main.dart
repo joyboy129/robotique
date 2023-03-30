@@ -901,23 +901,72 @@ class SettingsPage extends StatelessWidget {
       Expanded(
         child: Row(
           children: [
+            
             Expanded(
+              
               flex: 2,
               child: Container(
-                color: Colors.yellow,
-                child: Center(
-                  child: Text('Cell 3'),
-                ),
-              ),
+                 width: double.infinity,
+        height: double.infinity,
+  padding: EdgeInsets.all(20),
+  color:Colors.grey[900],
+  child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Padding(
+  padding: EdgeInsets.only(bottom: 15),
+  child: Text(
+        'Maintenance',
+        style: TextStyle(fontSize: 24,
+        color:Colors.white,
+        ),
+      ),
+),
+      
+      ElevatedButton(
+        onPressed: () {
+          // Reset button logic here
+        },
+        child: Text('Reset'),
+      ),
+    ],
+  ),
+),
             ),
             Expanded(
-              flex: 2,
+              flex: 5,
               child: Container(
-                color: Colors.purple,
-                child: Center(
-                  child: Text('Cell 4'),
-                ),
-              ),
+  color: Colors.blue,
+  child: Row(
+    children: [
+      Expanded(
+        child: Container(
+          color: Colors.red,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          color: Colors.green,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          color: Colors.yellow,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          color: Colors.orange,
+        ),
+      ),
+      Expanded(
+        child: Container(
+          color: Colors.purple,
+        ),
+      ),
+    ],
+  ),
+),
             ),
           ],
         ),
