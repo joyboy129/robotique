@@ -940,9 +940,7 @@ class SettingsPage extends StatelessWidget {
   child: Row(
     children: [
       Expanded(
-        child: Container(
-          color: Colors.red,
-        ),
+        child: MaintWarn(),
       ),
       Expanded(
         child: Container(
@@ -1334,6 +1332,94 @@ class VerticalBar extends StatelessWidget {
     );
   }
 }
+
+class MaintWarn extends StatefulWidget {
+  const MaintWarn({Key? key}) : super(key: key);
+
+  @override
+  _MaintWarnState createState() => _MaintWarnState();
+}
+
+class _MaintWarnState extends State<MaintWarn> {
+  final TextEditingController _textEditingController = TextEditingController();
+  bool _isEditing = false;
+  double _rangeValue = 70;
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Column(
+        children: [
+          TextButton(
+            onPressed: () {
+              setState(() {
+                _isEditing = true;
+              });
+            },
+            child: Text('Edit'),
+          ),
+          Expanded(
+            child: SfRadialGauge(
+              axes: [
+                RadialAxis(
+                  minimum: 0,
+                  maximum: 100,
+                  showLabels: false,
+                  showTicks: false,
+                  axisLineStyle: AxisLineStyle(
+                    thickness: 0.2,
+                    color: Colors.grey,
+                    thicknessUnit: GaugeSizeUnit.factor,
+                  ),
+                  pointers: [
+                    RangePointer(
+                      value: _rangeValue,
+                      width: 0.2,
+                      sizeUnit: GaugeSizeUnit.factor,
+                      color: Colors.yellow,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          if (_isEditing)
+            TextField(
+              controller: _textEditingController,
+              onSubmitted: (String text) {
+                int myInt = int.tryParse(text) ?? _rangeValue.toInt();
+                setState(() {
+                  _rangeValue = myInt.toDouble();
+                });
+                setState(() {
+                  _isEditing = false;
+                });
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter text',
+              ),
+            )
+          else
+            Text(
+              '$_rangeValue',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+
 
 Widget start(
   setState,
