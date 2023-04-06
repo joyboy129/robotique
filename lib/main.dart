@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:flutter_advanced_switch/flutter_advanced_switch.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart' hide CornerStyle;
 import 'package:syncfusion_flutter_charts/charts.dart' as charts;
@@ -936,31 +936,23 @@ class SettingsPage extends StatelessWidget {
             Expanded(
               flex: 5,
               child: Container(
-  color: Colors.blue,
+  color: Color.fromARGB(255, 37, 37, 37),
   child: Row(
     children: [
       Expanded(
         child: MaintWarn(),
       ),
       Expanded(
-        child: Container(
-          color: Colors.green,
-        ),
+        child: MaintWarn(),
       ),
       Expanded(
-        child: Container(
-          color: Colors.yellow,
-        ),
+        child:  MaintWarn(),
       ),
       Expanded(
-        child: Container(
-          color: Colors.orange,
-        ),
+        child:  MaintWarn(),
       ),
       Expanded(
-        child: Container(
-          color: Colors.purple,
-        ),
+        child:  MaintWarn(),
       ),
     ],
   ),
@@ -1350,7 +1342,7 @@ class _MaintWarnState extends State<MaintWarn> {
     _textEditingController.dispose();
     super.dispose();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -1365,28 +1357,37 @@ class _MaintWarnState extends State<MaintWarn> {
             child: Text('Edit'),
           ),
           Expanded(
-            child: SfRadialGauge(
-              axes: [
-                RadialAxis(
-                  minimum: 0,
-                  maximum: 100,
-                  showLabels: false,
-                  showTicks: false,
-                  axisLineStyle: AxisLineStyle(
-                    thickness: 0.2,
-                    color: Colors.grey,
-                    thicknessUnit: GaugeSizeUnit.factor,
-                  ),
-                  pointers: [
-                    RangePointer(
-                      value: _rangeValue,
-                      width: 0.2,
-                      sizeUnit: GaugeSizeUnit.factor,
-                      color: Colors.yellow,
+            child: GestureDetector(
+              onPanUpdate: (details) {
+                setState(() {
+                  _rangeValue -= details.delta.dy / 2;
+                  if (_rangeValue < 0) _rangeValue = 0;
+                  if (_rangeValue > 100) _rangeValue = 100;
+                });
+              },
+              child: SfRadialGauge(
+                axes: [
+                  RadialAxis(
+                    minimum: 0,
+                    maximum: 100,
+                    showLabels: false,
+                    showTicks: false,
+                    axisLineStyle: AxisLineStyle(
+                      thickness: 0.2,
+                      color: Colors.grey,
+                      thicknessUnit: GaugeSizeUnit.factor,
                     ),
-                  ],
-                ),
-              ],
+                    pointers: [
+                      RangePointer(
+                        value: _rangeValue,
+                        width: 0.2,
+                        sizeUnit: GaugeSizeUnit.factor,
+                        color: Colors.yellow,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           if (_isEditing)
@@ -1402,17 +1403,36 @@ class _MaintWarnState extends State<MaintWarn> {
                 });
               },
               decoration: InputDecoration(
-                hintText: 'Enter text',
-              ),
+   hintStyle: TextStyle(color: Color.fromARGB(255, 196, 195, 195)),
+    hintText: 'Modifier',
+    prefixIcon: Icon(Icons.edit),
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey),
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.blue),
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+  ),
             )
           else
-            Text(
-              '$_rangeValue',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+           Container(
+  margin: EdgeInsets.only(bottom: 10.0),
+  child: Text(
+    
+    '${_rangeValue.toInt()}',
+    style: TextStyle(
+      color:Color.fromARGB(255, 206, 206, 206),
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+),
+
         ],
       ),
     );
