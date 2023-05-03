@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Text('ROBOT ASSEMBLEUR'),
               SizedBox(
-                width: 400,
+                width: 70,
               ),
               TextButton(
                 onPressed: () {
@@ -204,11 +204,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               SizedBox(
-                width: 50,
+                width: 10,
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  
                 },
                 child: const Text(
                   'MODE MANUELLE',
@@ -264,18 +264,9 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 onoff('Activation de la presse', setState, _controller, size),
                 gauge("Rotation tige d'assemblage", setState, size,
-                    _volumeValue, onVolumeChanged)
-              ],
-            ),
-          ),
-          Expanded(
-            flex: 1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                onoff("Electro-aimant", setState, _controller2, size),
-                gauge("Rotation disque", setState, size, _volumeValue2,
-                    onVolumeChanged2)
+                    _volumeValue, onVolumeChanged),
+                     onoff('Pipette', setState, _controller4, size),
+              
               ],
             ),
           ),
@@ -284,13 +275,22 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    onoff('Ventouse', setState, _controller3, size),
-                    onoff('Pipette', setState, _controller4, size),
-                  ],
-                ),
+                onoff("Electro-aimant", setState, _controller2, size),
+                gauge("Rotation disque", setState, size, _volumeValue2,
+                    onVolumeChanged2),
+                  
+                onoff('Ventouse', setState, _controller3, size),
+               
+                 
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                
                 Column(
                   children: [
                     Row(
@@ -395,7 +395,7 @@ class _AutomaticPageState extends State<AutomaticPage> {
           children: [
             Text('ROBOT ASSEMBLEUR'),
             SizedBox(
-              width: 400,
+              width: 70,
             ),
             TextButton(
               onPressed: () {
@@ -410,11 +410,15 @@ class _AutomaticPageState extends State<AutomaticPage> {
               ),
             ),
             SizedBox(
-              width: 50,
+              width: 10,
             ),
             TextButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage(title: 'Flutter Demo Home Page')),
+              );
+                
               },
               child: const Text(
                 'MODE MANUELLE',
@@ -427,8 +431,17 @@ class _AutomaticPageState extends State<AutomaticPage> {
           Row(
             children: [
               IconButton(
-                  onPressed: () {}, icon: Icon(Icons.notification_important)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.settings))
+                  onPressed: (
+                    
+                  ) {}, icon: Icon(Icons.notification_important)),
+              IconButton(onPressed: (
+
+              ) {
+                 Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SettingsPage()),
+                  );
+              }, icon: Icon(Icons.settings))
             ],
           )
       
@@ -467,7 +480,7 @@ class _AutomaticPageState extends State<AutomaticPage> {
                 ),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 80.0, bottom: 90.0, left:30.0,right:30.0),
+                    margin: EdgeInsets.only(top: 30.0, bottom: 30.0, left:10.0,right:10.0),
                     
                     color: Color.fromARGB(255, 90, 87, 87),
                     child: Column(
@@ -480,25 +493,25 @@ class _AutomaticPageState extends State<AutomaticPage> {
     style: TextStyle(
       color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 10.0,
     ),
   ),
 ),
                         // ignore: prefer_const_constructors
                         
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Divider(
                           color: Colors.white,
                           thickness: 1.0,
                         ),
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Row(
                           children: [Container(
-  width: 20.0,
-  height: 20.0),
+  width: 10.0,
+  height: 10.0),
                             Container(
-  width: 50.0,
-  height: 50.0,
+  width: 20.0,
+  height: 20.0,
   color: Color.fromARGB(255, 147, 247, 150),
   child: Align(
   alignment: Alignment.center,
@@ -506,7 +519,7 @@ class _AutomaticPageState extends State<AutomaticPage> {
                               '$_number',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 20.0,
+                                fontSize: 10.0,
                               ),
                             ),
 )
@@ -522,7 +535,7 @@ Container(
     'Piles boutons',
     style: TextStyle(
       fontWeight: FontWeight.normal,
-  fontSize: 18.0,
+  fontSize: 10.0,
       color: Colors.green,
     ),
   ),
@@ -547,7 +560,7 @@ Container(
                 ),
               Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 80.0, bottom: 90.0, left:30.0,right:30.0),
+                    margin: EdgeInsets.only(top: 20.0, bottom: 20.0, left:20.0,right:10.0),
                     
                     color: Color.fromARGB(255, 90, 87, 87),
                     child: Column(
@@ -560,18 +573,18 @@ Container(
     style: TextStyle(
       color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 10.0,
     ),
   ),
 ),
                         // ignore: prefer_const_constructors
                         
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Divider(
                           color: Colors.white,
                           thickness: 1.0,
                         ),
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 2.0),
                         Expanded(
               child: SfLinearGauge(
                 minimum: 0,
@@ -625,7 +638,7 @@ Container(
                 ),
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 80.0, bottom: 90.0, left:30.0,right:30.0),
+                    margin: EdgeInsets.only(top: 30.0, bottom: 30.0, left:10.0,right:10.0),
                     
                     color: Color.fromARGB(255, 90, 87, 87),
                     child: Column(
@@ -638,7 +651,7 @@ Container(
     style: TextStyle(
       color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 10.0,
     ),
   ),
 ),
@@ -649,21 +662,14 @@ Container(
                           color: Colors.white,
                           thickness: 1.0,
                         ),
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 3.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [Container(
-  width: 20.0,
-  height: 20.0),
-                            Container(
-  width: 50.0,
-  height: 50.0,
-  
-  
-),
+                          children: [
+                        
 
 Container(
-  margin:EdgeInsets.only(left:20),
+  
   child:Align(
   alignment: Alignment.center,
   
@@ -671,7 +677,7 @@ Container(
     '00:00:00',
     style: TextStyle(
       fontWeight: FontWeight.normal,
-  fontSize: 25.0,
+  fontSize: 18.0,
       color: Colors.blue,
     ),
   ),
@@ -687,7 +693,7 @@ Container(
                 
                 Expanded(
                   child: Container(
-                    margin: EdgeInsets.only(top: 40.0, bottom: 30.0, left:30.0,right:30.0),
+                    margin: EdgeInsets.only(bottom: 30.0, left:20.0,right:20.0),
                     
                     color: Color.fromARGB(255, 90, 87, 87),
                     child: Column(
@@ -700,27 +706,22 @@ Container(
     style: TextStyle(
       color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
+                            fontSize: 10.0,
     ),
   ),
 ),
                         // ignore: prefer_const_constructors
                         
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Divider(
                           color: Colors.white,
                           thickness: 1.0,
                         ),
-                        SizedBox(height: 8.0),
+                        SizedBox(height: 4.0),
                         Row(
                           children: [
-                            Container(
-  width: 50.0,
-  height: 50.0,
-  
-  
-),
-Container( width: 70.0,
+                            
+Container( width: 10.0,
   height: 10.0),
 
 Container(
@@ -728,12 +729,12 @@ Container(
   alignment: Alignment.center,
   child: PieChart(
       dataMap: dataMap,
-      animationDuration: Duration(milliseconds: 800),
-      chartLegendSpacing: 32,
+      animationDuration: Duration(milliseconds: 400),
+      chartLegendSpacing: 15,
       chartRadius: MediaQuery.of(context).size.width / 15,
       initialAngleInDegree: 0,
       chartType: ChartType.ring,
-      ringStrokeWidth: 32,
+      ringStrokeWidth: 15,
       legendOptions: LegendOptions(
         showLegendsInRow: false,
         legendPosition: LegendPosition.right,
@@ -781,7 +782,7 @@ class SettingsPage extends StatelessWidget {
             children: [
               Text('ROBOT ASSEMBLEUR'),
               SizedBox(
-                width: 400,
+                width: 70,
               ),
               TextButton(
                 onPressed: () {
@@ -796,11 +797,14 @@ class SettingsPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                width: 50,
+                width: 10,
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage(title: 'Flutter Demo Home Page')),
+                  );
                 },
                 child: const Text(
                   'MODE MANUELLE',
@@ -843,7 +847,7 @@ class SettingsPage extends StatelessWidget {
               flex:5,
                  child:Container(
       color: Colors.grey[900], // dark background color
-      padding: EdgeInsets.all(16.0),
+      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -851,41 +855,65 @@ class SettingsPage extends StatelessWidget {
             'Etat de Stock', // top text
             style: TextStyle(
               color: Colors.white,
-              fontSize: 20.0,
+              fontSize: 15.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           Divider(
             color: Colors.white, // white divider
-            height: 40.0,
+            height: 10.0,
           ),
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child:StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
                 Expanded(
-                  child: StockCell(),
+                  child: StockCell(
+            text: 'Example Text',
+            percentage: 0.7,
+          ),
                 ),
               ],
             ),
@@ -969,31 +997,31 @@ class SettingsPage extends StatelessWidget {
 
 Widget onoff(text, setState, _controller, size) {
   return Container(
-    height: size.height / 4,
-    width: size.height / 4,
+    height: size.height / 5,
+    width: size.height / 5,
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 37, 37, 37),
       borderRadius: BorderRadius.circular(10),
     ),
-    padding: const EdgeInsets.all(15),
-    margin: const EdgeInsets.symmetric(vertical: 20),
+    padding: const EdgeInsets.all(5),
+    margin: const EdgeInsets.symmetric(vertical: 8),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 10),
         ),
         const Divider(
           thickness: 1,
-          height: 20,
+          height: 10,
           color: Colors.white,
         ),
         AdvancedSwitch(
           controller: _controller,
           inactiveColor: Color.fromARGB(255, 204, 204, 204),
-          width: 120,
-          height: 60,
+          width: 40,
+          height: 20,
           borderRadius: BorderRadius.circular(30),
           activeChild: Text('ON'),
           inactiveChild: Text('OFF'),
@@ -1011,24 +1039,23 @@ Widget onoff(text, setState, _controller, size) {
 
 Widget gauge(text, setState, size, _volumeValue, onVolumeChanged) {
   return Container(
-    height: size.height / 4,
-    width: size.height / 4,
+    height: size.height / 5,
+    width: size.height / 5,
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 37, 37, 37),
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(5),
     ),
-    padding: const EdgeInsets.all(15),
-    margin: const EdgeInsets.symmetric(vertical: 20),
+    padding: const EdgeInsets.all(5),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Text(
           text,
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 9),
         ),
         const Divider(
           thickness: 1,
-          height: 20,
+          height: 10,
           color: Colors.white,
         ),
         Expanded(
@@ -1044,7 +1071,7 @@ Widget gauge(text, setState, size, _volumeValue, onVolumeChanged) {
                 pointers: <GaugePointer>[
                   RangePointer(
                       value: _volumeValue,
-                      width: 10,
+                      width: 6,
                       sizeUnit: GaugeSizeUnit.logicalPixel,
                       gradient: const SweepGradient(colors: <Color>[
                         Color.fromARGB(255, 82, 82, 3),
@@ -1057,11 +1084,11 @@ Widget gauge(text, setState, size, _volumeValue, onVolumeChanged) {
                       value: _volumeValue,
                       enableDragging: true,
                       onValueChanged: onVolumeChanged,
-                      markerHeight: 20,
-                      markerWidth: 20,
+                      markerHeight: 8,
+                      markerWidth: 8,
                       markerType: MarkerType.circle,
                       color: Colors.white,
-                      borderWidth: 2,
+                      borderWidth: 1,
                       borderColor: Colors.white)
                 ],
                 annotations: <GaugeAnnotation>[
@@ -1072,7 +1099,7 @@ Widget gauge(text, setState, size, _volumeValue, onVolumeChanged) {
                       widget: Text(
                           (_volumeValue * 360 / 4096).toStringAsFixed(2) + '°',
                           style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 10,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)))
                 ])
@@ -1086,14 +1113,14 @@ Widget gauge(text, setState, size, _volumeValue, onVolumeChanged) {
 Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
     Pchanged, sendX, sendY, sendZ, sendP) {
   return Container(
-    height: size.height / 4 + 50,
+    height: size.height/ 1.2,
     width: size.height / 2,
     decoration: BoxDecoration(
       color: const Color.fromARGB(255, 37, 37, 37),
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(5),
     ),
-    padding: const EdgeInsets.all(15),
-    margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
+    padding: const EdgeInsets.all(3),
+    margin: const EdgeInsets.symmetric(vertical: 1, horizontal: 5),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -1102,11 +1129,11 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
           children: [
             const Text(
               'X',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 12),
             ),
             const Text(
               'mm',
-              style: TextStyle(color: Colors.white, fontSize: 10),
+              style: TextStyle(color: Colors.white, fontSize: 8),
             ),
             Expanded(
               child: SfLinearGauge(
@@ -1140,11 +1167,11 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
           children: [
             const Text(
               'Y',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 12),
             ),
             const Text(
               'mm',
-              style: TextStyle(color: Colors.white, fontSize: 10),
+              style: TextStyle(color: Colors.white, fontSize: 8),
             ),
             Expanded(
               child: SfLinearGauge(
@@ -1178,11 +1205,11 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
           children: [
             const Text(
               'Z',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 12),
             ),
             const Text(
               'mm',
-              style: TextStyle(color: Colors.white, fontSize: 10),
+              style: TextStyle(color: Colors.white, fontSize: 8),
             ),
             Expanded(
               child: SfLinearGauge(
@@ -1216,11 +1243,11 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
           children: [
             const Text(
               'A',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle(color: Colors.white, fontSize: 12),
             ),
             const Text(
               'mm',
-              style: TextStyle(color: Colors.white, fontSize: 10),
+              style: TextStyle(color: Colors.white, fontSize: 8),
             ),
             Expanded(
               child: SfLinearGauge(
@@ -1249,10 +1276,15 @@ Widget xyz(text, setState, size, Xchanged, x, Ychanged, y, Zchanged, z, p,
   );
 }
 class StockCell extends StatelessWidget {
+  final String text;
+  final double percentage;
+
+  const StockCell({required this.text, required this.percentage});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(3.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.0),
         color: Colors.grey[800], // cell background color
@@ -1260,31 +1292,30 @@ class StockCell extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          
           ElevatedButton(
-  onPressed: () {
-    // Do something when the button is pressed
-  },
-  child: Text(
-            'Reset', // button above
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 16.0,
+            onPressed: () {
+              // Do something when the button is pressed
+            },
+            child: Text(
+              'Reset', // button above
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 8.0,
+              ),
             ),
           ),
-),
-          SizedBox(height: 16.0),
+          SizedBox(height: 8.0),
           Container(
-            width: 20.0,
-            height: 80.0,
-            child: VerticalBar(percentage: 0.5, color: Colors.red),
+            width: 10.0,
+            height: 60.0,
+            child: VerticalBar(percentage: percentage, color: Colors.red),
           ),
           SizedBox(height: 16.0),
           Text(
-            'Text Below', // text below
+            text, // text below
             style: TextStyle(
               color: Colors.white,
-              fontSize: 16.0,
+              fontSize: 10.0,
             ),
           ),
         ],
@@ -1292,6 +1323,7 @@ class StockCell extends StatelessWidget {
     );
   }
 }
+
 class VerticalBarPainter extends CustomPainter {
   final double percentage;
   final Color color;
